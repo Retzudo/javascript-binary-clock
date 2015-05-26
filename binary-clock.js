@@ -1,7 +1,7 @@
-function BinaryClock(size, image_url, targetContainerId) {
+function BinaryClock(size, imageUrl, targetContainerId) {
     this.size = size;
-    this.url = image_url;
-    this.container = targetContainerId;
+    this.url = imageUrl;
+    this.container = document.getElementById(targetContainerId);
     this.interval = null;
 
     this.start();
@@ -24,14 +24,12 @@ BinaryClock.prototype.update = function() {
     dE = Math.floor(seconds/10);
     dF = seconds - dE*10;
 
-    var element = document.getElementById(this.container);
-
-    element.childNodes.item(0).style.backgroundPosition = dA*(-this.size)+"px 0px";
-    element.childNodes.item(1).style.backgroundPosition = dB*(-this.size)+"px 0px";
-    element.childNodes.item(2).style.backgroundPosition = dC*(-this.size)+"px 0px";
-    element.childNodes.item(3).style.backgroundPosition = dD*(-this.size)+"px 0px";
-    element.childNodes.item(4).style.backgroundPosition = dE*(-this.size)+"px 0px";
-    element.childNodes.item(5).style.backgroundPosition = dF*(-this.size)+"px 0px";
+    this.container.childNodes.item(0).style.backgroundPosition = dA*(-this.size)+"px 0px";
+    this.container.childNodes.item(1).style.backgroundPosition = dB*(-this.size)+"px 0px";
+    this.container.childNodes.item(2).style.backgroundPosition = dC*(-this.size)+"px 0px";
+    this.container.childNodes.item(3).style.backgroundPosition = dD*(-this.size)+"px 0px";
+    this.container.childNodes.item(4).style.backgroundPosition = dE*(-this.size)+"px 0px";
+    this.container.childNodes.item(5).style.backgroundPosition = dF*(-this.size)+"px 0px";
 };
 
 BinaryClock.prototype.init = function() {
@@ -43,7 +41,7 @@ BinaryClock.prototype.init = function() {
         '<div id="e" style="width: '+this.size+'px; height: '+this.size*4+'px; background: url(\''+this.url+'\'); display: inline-block; background-repeat: no-repeat;"></div>' +
         '<div id="f" style="width: '+this.size+'px; height: '+this.size*4+'px; background: url(\''+this.url+'\'); display: inline-block; background-repeat: no-repeat;"></div>';
 
-    document.getElementById(this.container).innerHTML = html;
+    this.container.innerHTML = html;
 };
 
 BinaryClock.prototype.stop = function() {
